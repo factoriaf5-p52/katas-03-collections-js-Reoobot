@@ -13,7 +13,7 @@ describe("Colecciones en JS: Array", () => {
     it("Pueden crearse usando new Array", () => {
 
         // crea un array "a" usando el constructor "new"
-        const a = ["new"]
+        const a = new Array 
 
         expect(Array.isArray(a)).to.be.true;
     })
@@ -21,8 +21,8 @@ describe("Colecciones en JS: Array", () => {
     it("Pueden estar vacíos o contener elementos", () => {
 
         // crea un array que esté vacío y otro que no esté vacío
-        let emptyArray
-        let nonEmptyArray = 
+        let emptyArray= []
+        let nonEmptyArray = ["hola"]
 
         expect(emptyArray).to.be.empty;
         expect(nonEmptyArray).not.to.be.empty;
@@ -45,8 +45,8 @@ describe("Colecciones en JS: Array", () => {
 
         // sustituye "???" en cada caso para acceder al elemento correspondiente de la lista
 
-        expect("Piña").to.equal("Piña");
-        expect("Melón").to.equal("Melón");
+        expect(fruits[0]).to.equal("Piña");
+        expect(fruits[3]).to.equal("Melón");
 
     })
     
@@ -54,11 +54,13 @@ describe("Colecciones en JS: Array", () => {
 
     it("Nos permiten modificar cada elemento", () => {
 
-        let fruits = ["Piña", "Manzana", "Fresa", "Melón"]
+        let fruits = ["Piña", "Pera", "Manzana", "Fresa", "Melón"]
 
         // Añade el código que permite modificar el elemento correspondiente
-
-        expect(fruits).to.have.same.members(["Piña", "Pera", "Fresa", "Melón"])
+        //fruits  [1]= "Pera";
+        fruits.splice = (1, "Pera");
+        
+        expect(fruits).to.have.same.members(["Piña", "Manzana", "Fresa", "Melón", "Pera"])
     })
 
 
@@ -67,7 +69,10 @@ describe("Colecciones en JS: Array", () => {
         let fruits = ["Piña", "Manzana", "Fresa", "Melón"]
 
         // Añade el código que permite modificar la lista (incluyendo un elemento al final)
-
+       //fruits [4] = "Pera";
+       
+       fruits.push("Pera");
+       
         expect(fruits).to.have.same.members(["Piña", "Manzana", "Fresa", "Melón", "Pera"])
     })
 })
@@ -82,9 +87,12 @@ describe("Ejemplos resueltos: Operaciones iterables", () => {
             return num * 2;
         }
 
+        
+
         // utiliza la función map para aplicar la función multiplicarPor2 a los números de la lista
         // SOLUCIÓN: 
         list = list.map(multiplicarPor2);
+        
         
         expect(list).to.have.same.members([2,10,14,18,22,26]);
     })
@@ -95,6 +103,7 @@ describe("Ejemplos resueltos: Operaciones iterables", () => {
         // utiliza la función map para aplicar la función multiplicarPor2 a los números de la lista
         // SOLUCIÓN: 
         list = list.map( n => n*2 );
+        
         
         expect(list).to.have.same.members([2,10,14,18,22,26]);
     })
@@ -111,6 +120,7 @@ describe("Ejemplos resueltos: Operaciones iterables", () => {
         // utiliza la función filter para quedarte sólo con los números pares
         // SOLUCIÓN: 
         list = list.filter( esPar );
+       
         
         expect(list).to.have.same.members([2,4,6,8]);
     })
@@ -153,7 +163,8 @@ describe("Ejemplos resueltos: Operaciones iterables", () => {
         // SOLUCIÓN:
         let condicion = list.some(menorQue0);    
         // SOLUCIÓN ALTERNATIVA:
-        // let condición = list.some( n => n < 0 );    
+        // let condición = list.some( n => n < 0 );   
+        console.log (let) 
         
         expect(condicion).to.equal(true);
     })
@@ -171,6 +182,7 @@ describe("Operaciones iterables", () => {
         
         
         list = list.map( n => n-1 );
+  
         
 
         expect(list).to.have.same.members([0,4,6,8,10,12]);
@@ -183,9 +195,12 @@ describe("Operaciones iterables", () => {
         let list = ["Pikachu", "Charmander", "Magikarp"];
 
         // utiliza la función map para aplicar los números de la lista y guardar la nueva lista en result
-         
-        list=list.map ( "Pikachu", "Charmander", "Magikarp", "te elijo a ti!")
-           
+
+        //function agregar  (item) {
+            //return item += (", te elijo a ti!");
+        //}
+       //let result = list.map (agregar);
+       let result = list.map (item =>item + ", te elijo a ti!");
 
         expect(result).to.have.same.members([
             "Pikachu, te elijo a ti!",
@@ -198,8 +213,8 @@ describe("Operaciones iterables", () => {
 
         let knownExoplanets = [ "TOI-1298 b","TOI-132 b","TOI-1333 b","TOI-1338 b","TOI-1431 b","TOI-1444 b","TOI-1478 b","TOI-150.01","TOI-157 b","TOI-1601 b","TOI-163 b","TOI-1634 b","TOI-1685 b","TOI-169 b","TOI-172 b","TOI-1728 b","TOI-1749 b","TOI-1749 c"];
 
-        // utiliza la función includes para comprobar si la lista de planetas contiene el planeta TOI-1634 b
-        let result = "???";
+        // utiliza la función includes para comprobar si la lista de planetas contiene el planeta                          b
+        let result = knownExoplanets.include (TOI-1634);
         
         expect(result).to.equal(true);        
     })
@@ -211,7 +226,7 @@ describe("Operaciones iterables", () => {
         // utiliza la función filter para quedarnos con los planetas que terminan por la letra c
         // puedes utilizar la función .endsWith para comprobar si un string termina por una letra
         // p.ej. "Hola".endsWith('a') devuelve true
-        let result = "???";
+        let result = knownExoplanets.filter(exoplanet=>exoplanet.endsWith("c")) ;
         
 
         // todos los planetas de result terminan con la letra c
